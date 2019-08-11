@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  phoenix:
+    build: .
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/src
+    working_dir: /src
+  postgres:
+    image: postgres
+    environment: 
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    
