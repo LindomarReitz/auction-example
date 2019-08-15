@@ -1,0 +1,23 @@
+image:
+  name: docker/compose:1.24.0
+  entrypoint: ["/bin/sh", "-c"]
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - docker info
+  - docker-compose --version
+  
+stages:
+    - test
+
+test:
+    stage: test
+    script: 
+        - docker-compose up -d
+        - docker-compose exec phoenix bash
