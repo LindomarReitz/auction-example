@@ -1,3 +1,5 @@
+<%= link "New item", to: Routes.item_path(@conn, :new) %>
+
 <ul>
     <%= for item <- @items do %>
         <li><strong><%= link(item.title, to: Routes.item_path(@conn, :show, item))%> - <%=item.description%></li>
