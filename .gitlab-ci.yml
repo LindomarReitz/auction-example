@@ -1,0 +1,15 @@
+image:
+  name: docker/compose
+  entrypoint: ["/bin/sh", "-c"]
+
+services:
+  - docker:dind
+  
+stages:
+    - test
+
+test:
+    stage: test
+    script: 
+        - docker-compose up -d
+        - docker-compose exec phoenix bash
