@@ -14,10 +14,15 @@ before_script:
   - docker-compose --version
   
 stages:
-    - test
+    - integration_tests
+    - api_tests
 
-test:
-    stage: test
+integration_tests:
+    stage: integration_tests
     script: 
-        - docker-compose up -d
-        - docker-compose exec phoenix bash
+        - docker-compose run phoenix bash -c "cd apps/auction && mix test"
+
+api_tests:
+    stage: api_tests
+    script: 
+        - docker-compose run phoenix bash -c "cd apps/auction_web && mix test"
