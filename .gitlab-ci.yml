@@ -20,9 +20,11 @@ stages:
 integration_tests:
     stage: integration_tests
     script: 
+        - docker-compose up -d
         - docker-compose run phoenix bash -c "cd apps/auction && mix test"
 
 api_tests:
     stage: api_tests
     script: 
+        - docker-compose up -d 
         - docker-compose run phoenix bash -c "cd apps/auction_web && mix test"
