@@ -27,4 +27,4 @@ api_tests:
     stage: api_tests
     script: 
         - docker-compose up -d 
-        - docker-compose run phoenix bash -c "cd apps/auction_web && mix test"
+        - docker-compose run phoenix bash -c "mxi ecto.create && mix ecto.migrate && cd apps/auction_web && mix test"
