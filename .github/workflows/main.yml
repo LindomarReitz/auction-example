@@ -1,0 +1,11 @@
+name: Main workflow
+on: push
+jobs:
+  build:
+    name: Elixir action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: docker-compose up -d
+    - run: docker-compose run -T phoenix bash -c "cd apps/auction && mix test"
+    - run: docker-compose run -T phoenix bash -c "mix ecto.create && mix ecto.migrate && cd apps/auction_web && mix test"
